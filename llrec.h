@@ -12,7 +12,7 @@ struct Node
     int val;
     Node *next;
 
-    Node(int v, Node* n) : val(v), next(n) {}
+    Node(int v, Node* n) : val(v), next(n) {} //functor
 };
 
 
@@ -83,7 +83,21 @@ Node* llfilter(Node* head, Comp pred)
     //*********************************************
     // Provide your implementation below
     //*********************************************
+    
+    //base case
+    if (head == NULL){
+        return NULL;
+    }
 
+    Node* next = llfilter(head->next, pred); 
+    if (pred(head->val)){ //filters based on pred
+        delete head; //removed items deallocated 
+        return next;
+    }
+    else {
+        head->next = next;
+        return head;
+    }
 
 }
 
