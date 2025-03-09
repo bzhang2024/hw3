@@ -97,24 +97,24 @@ void Heap<T,PComparator>::push(const T& item){
   - swap the 2
   - otherwise node in right position, break loop */
 
-  int parent = idx/m; 
-  while (parent <= 0 && comp(elements[idx], elements[parent])){ //idx better than parent
+  int parent = (idx-1)/m; 
+  while (parent >= 0 && comp(elements[idx], elements[parent])){ //idx better than parent
     std::swap(elements[idx], elements[parent]);
     idx = parent; 
-    parent = idx/m; 
+    parent = (idx-1)/m; 
   }
 
 }
 
 template <typename T, typename PComparator>
-size_t Head<T,PComparator>::size(){
+size_t Heap<T,PComparator>::size() const{
   //implement
   //DONE
   return elements.size(); 
 }
 
 template <typename T, typename PComparator>
-bool Head<T,PComparator>::empty() const {
+bool Heap<T,PComparator>::empty() const {
   //implement
   //DONE
   return elements.empty(); 
@@ -131,7 +131,7 @@ T const & Heap<T,PComparator>::top() const
     // ================================
     // throw the appropriate exception
     // ================================
-    throw underflow_error(); 
+    throw std::underflow_error("heap is empty"); 
   }
   // If we get here we know the heap has at least 1 item
   // Add code to return the top element
@@ -151,21 +151,22 @@ void Heap<T,PComparator>::pop()
     // ================================
     // throw the appropriate exception
     // ================================
-    throw std::underflow_error(); 
+    throw std::underflow_error("heap is empty"); 
   }
 
-  T bestValue = elements[0]; //to-be popped
+  //T bestValue = elements[0]; //to-be popped
 
   elements[0] = elements.back(); //move last element to root
+  elements.pop_back(); //remove last element
 
   int current = 0; 
   while (true) {
     int best = current; 
-    for (int i = 0; i < m; i++){
-      int mthChild = (best*m) + i;
+    for (int i = 1; i <= m; i++){
+      int ithChild = (current*m) + i;
       
-      if (mthChild < elements.size() && comp(elements[mthChild], elements[current])){
-        best = mthChild; 
+      if (ithChild < elements.size() && comp(elements[ithChild], elements[best])){
+        best = ithChild; 
       }
     }
     if (best == current){ //node in right spot, no violation of heap property

@@ -39,7 +39,7 @@ bool Stack<T>::empty() const {
 }
 
 template <typename T>
-size_t Stack<T>::size(){
+size_t Stack<T>::size() const{
     //impleemt
     return std::vector<T>size(); 
 }
@@ -53,7 +53,7 @@ void Stack<T>::push(const T& item) {
 template <typename T>
 void Stack<T>::pop() {
     if (std::vector<T>empty()){
-        throw std::underflow_error(); 
+        throw std::underflow_error("the stack is empty"); 
     }
     std::vector<T>pop_back(); 
 }
@@ -62,9 +62,9 @@ template <typename T>
 const T& Stack<T>::top() const {
     //impelemtn
     if (std::vector<T>empty()){
-        throw std::underflow_error(); 
+        throw std::underflow_error("the stack is empty"); 
     }
-    return std::vector<T>front(); 
+    return std::vector<T>back(); 
 }
 
 #endif
