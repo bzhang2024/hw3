@@ -27,6 +27,6 @@ void llpivot(Node *&head, Node *&smaller, Node *&larger, int pivot){
         head->next = larger;
         larger = head;
     }
-    //head = NULL; 
+    head = NULL; 
 }
 
