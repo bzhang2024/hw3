@@ -6,7 +6,7 @@
 
 // Use inheritance from std::vector (choose public/private) as appropriate
 template <typename T>
-class Stack : private std::vector<T>
+class Stack : protected std::vector<T>
 {
 public:
     Stack();
