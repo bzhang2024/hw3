@@ -89,6 +89,7 @@ Node* llfilter(Node* head, Comp pred)
         return NULL;
     }
 
+    //recursive call
     Node* next = llfilter(head->next, pred); 
     if (pred(head->val)){ //filters based on pred
         delete head; //removed items deallocated 
