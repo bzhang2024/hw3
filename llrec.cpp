@@ -8,8 +8,8 @@ void llpivot(Node *&head, Node *&smaller, Node *&larger, int pivot){
     //DONE
     //base case
     if( head == NULL){
-        //smaller = NULL;
-        //larger = NULL;
+        smaller = NULL;
+        larger = NULL;
         return;
     }
 
@@ -28,5 +28,6 @@ void llpivot(Node *&head, Node *&smaller, Node *&larger, int pivot){
         larger = head;
     }
     head = NULL; 
+    return; 
 }
 
