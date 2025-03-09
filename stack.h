@@ -6,7 +6,7 @@
 
 // Use inheritance from std::vector (choose public/private) as appropriate
 template <typename T>
-class Stack : protected std::vector<T>
+class Stack : private std::vector<T>
 {
 public:
     Stack();
@@ -35,36 +35,36 @@ Stack<T>::~Stack(){
 template <typename T>
 bool Stack<T>::empty() const {
     //implement
-    return std::vector<T>empty(); //this-> not needed 
+    return std::vector<T>::empty(); //this-> not needed 
 }
 
 template <typename T>
 size_t Stack<T>::size() const{
     //impleemt
-    return std::vector<T>size(); 
+    return std::vector<T>::size(); 
 }
 
 template <typename T>
 void Stack<T>::push(const T& item) {
     //impelemnt
-    std::vector<T>push_back(item);
+    std::vector<T>::push_back(item);
 }
 
 template <typename T>
 void Stack<T>::pop() {
-    if (std::vector<T>empty()){
+    if (std::vector<T>::empty()){
         throw std::underflow_error("the stack is empty"); 
     }
-    std::vector<T>pop_back(); 
+    std::vector<T>::pop_back(); 
 }
 
 template <typename T>
 const T& Stack<T>::top() const {
     //impelemtn
-    if (std::vector<T>empty()){
+    if (std::vector<T>::empty()){
         throw std::underflow_error("the stack is empty"); 
     }
-    return std::vector<T>back(); 
+    return std::vector<T>::back(); 
 }
 
 #endif
