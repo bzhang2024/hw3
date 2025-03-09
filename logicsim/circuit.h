@@ -12,7 +12,7 @@ class Circuit
 		Circuit();
 		~Circuit();
 		void test();
-		bool advance(std::ostream&);
+		bool advance(std::ostream&); //simulates the circuit; advances to next event
 		void run(std::ostream&);
     bool parse(const char*);
     void startUml(std::ostream&);
@@ -23,7 +23,7 @@ class Circuit
     std::vector<Gate*> m_gates;
     std::vector<Wire*> m_wires;
 		// we need to add the m_pq data member. It should be a min-heap of Event*;
-        
+        Heap<Event*, EventLess> m_pq; //<T, PComparator>
 };
 
 #endif
